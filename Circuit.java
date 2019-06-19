@@ -7,6 +7,8 @@ public class Circuit {
 
     private static long FIVE_MINS_IN_MILLIS = 60000 * 5;
 
+    private static int MAX_FAILURES = 5;
+
     protected AtomicInteger failureCounter;
 
     private Long lastExceptionOccuredMillis;
@@ -24,9 +26,10 @@ public class Circuit {
         this.failureCounter.incrementAndGet();
     }
 
-    public boolean isOpen(long maxFailures) {
 
-        return (this.failureCounter.get() >= maxFailures);
+    public boolean isOpen() {
+
+        return (this.failureCounter.get() >= MAX_FAILURES);
     }
 
     public void reset() {

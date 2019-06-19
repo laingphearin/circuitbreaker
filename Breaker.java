@@ -12,8 +12,8 @@ public class Breaker {
     @Autowired
     Circuit circuit;
 
-    public static class guard {
-        static final Map<String , Circuit> thirdPartyToCircuit = new HashMap<>();
+    public static class Guard {
+        public static final Map<String , Circuit> thirdPartyToCircuit = new HashMap<>();
 
         static {
             thirdPartyToCircuit.put(FI_HUB, new Circuit());
