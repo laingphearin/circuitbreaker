@@ -29,8 +29,7 @@ public class FlightController {
                                            @RequestParam String arrivalOrDeparture)  {
         try {
             if (Breaker.Guard.thirdPartyToCircuit.get(Breaker.FI_HUB).isOpen()) {
-                //to throw exception
-                BusinessError.GEOLOCATION_NAME_ALREADY_EXISTED.throwExceptionWithPlaceHolder(Breaker.FI_HUB);
+                BusinessError.CIRCUIT_IS_OPEN.throwExceptionWithPlaceHolder(Breaker.FI_HUB);
             }
             LOG.debug("arrivalOrDeparture: " + arrivalOrDeparture);
             Flight flight = flightInfoService.getFlightById(id, hostScheduledDate, arrivalOrDeparture);
